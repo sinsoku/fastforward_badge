@@ -47,7 +47,7 @@ function isFastForward() {
   return pullreq.base.sha == baseBranch.commit.sha;
 }
 function isOpen() {
-  return pullreq.status == "open";
+  return pullreq.state == "open";
 }
 
 getPullReq();
