@@ -26,7 +26,7 @@ function addBadge(enable) {
   var badge = '<' + tagName + ' style="' + style + '">' + text + '</' + tagName + '>';
   $(".discussion-topic-header").append(badge);
 }
-var pullreq, baseBranch;
+var pullreq, commits, baseBranch;
 var s = document.location.pathname.split('/');
 var owner = s[1];
 var repo = s[2];
@@ -38,18 +38,23 @@ function getPullReq() {
   var url = apiURL + "repos/" + owner + "/" + repo + "/pulls/" + number;
   $.getJSON(url, function(json) { pullreq = json; });
 }
+function getCommits() {
+  var url = apiURL + "repos/" + owner + "/" + repo + "/pulls/" + number + "/commits";
+  $.getJSON(url, function(json) { commits = json; });
+}
 function getBaseBranch() {
   var url = apiURL + "repos/" + owner + "/" + repo + "/branches/" + pullreq.base.ref;
   $.getJSON(url, function(json) { baseBranch = json; });
 }
 
 function isFastForward() {
-  return pullreq.base.sha == baseBranch.commit.sha;
+  return commits[0].parents[0].sha == baseBranch.commit.sha;
 }
 function isOpen() {
   return pullreq.state == "open";
 }
 
 getPullReq();
+getCommits();
 getBaseBranch();
 if (isOpen()) { addBadge(isFastForward()); }
