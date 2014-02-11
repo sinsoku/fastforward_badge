@@ -1,8 +1,10 @@
 // ==UserScript==
-// @name       fast-forward badge
-// @namespace  https://github.com/sinsoku/fastforward_badge
-// @version    0.3
-// @include    https://github.com/*/pull/*
+// @name        fast-forward badge
+// @namespace   https://github.com/sinsoku/fastforward_badge
+// @version     0.3
+// @downloadURL https://userscripts.org/scripts/source/183136.user.js
+// @updateURL   https://userscripts.org/scripts/source/183136.meta.js
+// @include     https://github.com/*/pull/*
 // ==/UserScript==
 
 function addBadge(enable) {
