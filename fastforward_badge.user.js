@@ -8,14 +8,12 @@
 function addBadge(enable) {
   var text;
   var tagName = "span";
-  var style = "border-radius: 5px;" +
-    "display: inline-block;" +
-    "margin-top: 3px;" +
-    "padding: 1px 3px;";
+  var style = "border-radius: 3px;" +
+    "font-weight: bold;";
   var enableStyle = "color: #fff;" +
-    "background-color: forestgreen;";
+    "background-color: #6cc644;";
   var disabledStyle = "color: #fff;" +
-    "background-color: dimgray;";
+    "background-color: #777;";
   if (enable) {
     text = "fast-forward";
     style += enableStyle;
@@ -23,8 +21,8 @@ function addBadge(enable) {
     text = "non-fast forward";
     style += disabledStyle;
   }
-  var badge = '<' + tagName + ' style="' + style + '">' + text + '</' + tagName + '>';
-  $(".discussion-topic-header").append(badge);
+  var badge = '<' + tagName + ' class="commit-ref" style="' + style + '">' + text + '</' + tagName + '>';
+  $(".gh-header-meta").append(", and this is " + badge);
 }
 var pullreq, commits, baseBranch;
 var s = document.location.pathname.split('/');
