@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       fast-forward badge
 // @namespace  https://github.com/sinsoku/fastforward_badge
-// @version    0.2
+// @version    0.3
 // @include    https://github.com/*/pull/*
 // ==/UserScript==
 
