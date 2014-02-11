@@ -32,19 +32,18 @@ var owner = s[1];
 var repo = s[2];
 var number = s[4];
 var apiURL = "https://api.github.com/";
-$.ajaxSetup({ async: false });
 
 function getPullReq() {
   var url = apiURL + "repos/" + owner + "/" + repo + "/pulls/" + number;
-  $.getJSON(url, function(json) { pullreq = json; });
+  return $.getJSON(url, function(json) { pullreq = json; });
 }
 function getCommits() {
   var url = apiURL + "repos/" + owner + "/" + repo + "/pulls/" + number + "/commits";
-  $.getJSON(url, function(json) { commits = json; });
+  return $.getJSON(url, function(json) { commits = json; });
 }
 function getBaseBranch() {
   var url = apiURL + "repos/" + owner + "/" + repo + "/branches/" + pullreq.base.ref;
-  $.getJSON(url, function(json) { baseBranch = json; });
+  return $.getJSON(url, function(json) { baseBranch = json; });
 }
 
 function isFastForward() {
@@ -54,7 +53,8 @@ function isOpen() {
   return pullreq.state == "open";
 }
 
-getPullReq();
-getCommits();
-getBaseBranch();
-if (isOpen()) { addBadge(isFastForward()); }
+$.when(getPullReq(), getCommits())
+  .then(getBaseBranch)
+  .then(function() {
+    if (isOpen()) { addBadge(isFastForward()); }
+  });
