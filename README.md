@@ -8,3 +8,5 @@ screenshots
 
 ![](https://raw.github.com/sinsoku/fastforward_badge/master/screenshots/badge_ff.png)
 ![](https://raw.github.com/sinsoku/fastforward_badge/master/screenshots/badge_noff.png)
+
+ff test
